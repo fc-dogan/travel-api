@@ -20,9 +20,23 @@ namespace Travel.Controllers
 
     
     [HttpGet]
-    public ActionResult<IEnumerable<Review>> Get()
+    public ActionResult<IEnumerable<Review>> Get(string author, int rating, string description)
     {
-      return _db.Reviews.ToList();
+      var query = _db.Reviews.AsQueryable();
+      if (author != null)
+      {
+        query = query.Where(entry => entry.Author == author);
+      }
+       if (rating != 0 )
+      {
+        query = query.Where(entry => entry.Rating == rating);
+      }
+      if (description != null)
+      {
+        query = query.Where(entry => entry.Description == description);
+      }
+
+      return query.ToList();
     }
 
    

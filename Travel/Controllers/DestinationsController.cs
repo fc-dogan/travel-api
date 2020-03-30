@@ -31,7 +31,8 @@ namespace Travel.Controllers
         query = query.Where(entry => entry.City == city);
       }
 
-      return _db.Destinations.ToList();
+      return query.ToList();
+      //  return query.Include(destination => destination.Reviews).ToList();
     }
 
     // POST api/Destination
@@ -48,7 +49,7 @@ namespace Travel.Controllers
       return _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
     }
 
-    // PUT api/destinations/5
+    // PUT api/destinations/3
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Destination destination)
     {
