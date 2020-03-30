@@ -22,6 +22,7 @@ namespace Travel.Controllers
     public ActionResult<IEnumerable<Destination>> Get(string country, string city)
     {
       var query = _db.Destinations.AsQueryable();
+      
       if (country != null)
       {
         query = query.Where(entry => entry.Country == country);
@@ -30,6 +31,10 @@ namespace Travel.Controllers
       {
         query = query.Where(entry => entry.City == city);
       }
+      // if (reviews != null)
+      // {
+      //   query = query.Include(destination => destination.Reviews).Where(entry => entry.Reviews == reviews);
+      // }
 
       return query.ToList();
       //  return query.Include(destination => destination.Reviews).ToList();
@@ -46,7 +51,7 @@ namespace Travel.Controllers
      [HttpGet("{id}")]
     public ActionResult<Destination> Get(int id)
     {
-      return _db.Destinations.FirstOrDefault(entry => entry.DestinationId == id);
+      return _db.Destinations.Include(destination => destination.Reviews).FirstOrDefault(entry => entry.DestinationId == id);
     }
 
     // PUT api/destinations/3
