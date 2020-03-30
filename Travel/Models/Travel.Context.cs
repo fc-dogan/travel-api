@@ -17,6 +17,7 @@ namespace Travel.Models
            new Destination {DestinationId = 2, Country = "France", City = "Paris"},
            new Destination {DestinationId = 3, Country = "Italy", City = "Rome"}
         );
+        
     builder.Entity<Review>()
         .HasData(
            new Review {ReviewId = 1, Author = "Author1", Rating = 5 , DestinationId = 1, Description = "Istanbul is one of the truly great romantic cities; home to a layering of civilization on civilization, of empire built on empire" },
