@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MySql.Data.MySqlClient;
 
 namespace Travel.Models
 {
@@ -7,7 +8,8 @@ namespace Travel.Models
     public int ReviewId {get; set;}
     public int Rating {get; set;}
     public string Description {get; set;}
-    public Destination Destination {get; set;}
+    public int DestinationId {get; set;}
+    public virtual Destination Destination {get; set;}
 
   }
 }
