@@ -4,20 +4,23 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Travel.Models;
+using Travel.Services;
 using Microsoft.AspNetCore.Authorization;
 
 namespace Travel.Controllers
 {
-  // [ApiVersion("1.0")]
+  [ApiVersion("1.0")]
   [Route("api/[controller]")]
   [ApiController]
   public class ReviewsController : ControllerBase
   {
     private TravelContext _db;
+    private IUserService _userService;
 
-    public ReviewsController(TravelContext db)
+    public ReviewsController(TravelContext db, IUserService userService)
     {
       _db = db;
+      _userService = userService;
     }
 
     
@@ -45,17 +48,17 @@ namespace Travel.Controllers
       return query.ToList();
     }
 
-    [HttpGet] 
-    public ActionResult<IEnumerable<Review>> GetRandom()
-    {
-      var query = _db.Reviews.AsQueryable();
-      Random rand = new Random();
-      int randomId = rand.Next(query.Count<Review>());
-      query = query.Where(r => r.ReviewId == randomId);
-      return query.ToList();
-    }
+    // [HttpGet] 
+    // public ActionResult<IEnumerable<Review>> GetRandom()
+    // {
+    //   var query = _db.Reviews.AsQueryable();
+    //   Random rand = new Random();
+    //   int randomId = rand.Next(query.Count<Review>());
+    //   query = query.Where(r => r.ReviewId == randomId);
+    //   return query.ToList();
+    // }
 
-   
+   [Authorize]
     [HttpPost]
     public void Post([FromBody] Review review)
     {
