@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Travel.Controllers
 {
+  [ApiVersion("1.0")]
   [Route("api/[controller]")]
   [ApiController]
   public class ReviewsController : ControllerBase

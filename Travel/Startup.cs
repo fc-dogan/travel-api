@@ -1,4 +1,5 @@
 ﻿using Travel.Models;
+using Travel.Controllers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +31,9 @@ namespace Travel
       services.AddApiVersioning(o => {
       o.ReportApiVersions = true;
       o.AssumeDefaultVersionWhenUnspecified = true;
-      o.DefaultApiVersion = new ApiVersion(1, 0);
+      o.Conventions.Controller<ReviewsController>().HasApiVersion(new ApiVersion(1, 0)); 
+      o.Conventions.Controller<ReviewsController>().HasApiVersion(new ApiVersion(2, 0));
+
       });
 
       services.AddCors();
