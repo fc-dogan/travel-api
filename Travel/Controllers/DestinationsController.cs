@@ -36,8 +36,8 @@ namespace Travel.Controllers
       //   query = query.Include(destination => destination.Reviews).Where(entry => entry.Reviews == reviews);
       // }
 
-      return query.ToList();
-      //  return query.Include(destination => destination.Reviews).ToList();
+      // return query.ToList();
+       return query.Include(destination => destination.Reviews).ToList();
     }
 
     // POST api/Destination

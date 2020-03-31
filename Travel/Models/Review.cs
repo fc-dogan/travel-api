@@ -11,6 +11,7 @@ namespace Travel.Models
     [StringLength(20)]
     public string Author {get; set;}
     [Required]
+    [Range(1, 5, ErrorMessage = "Rating must be between 1 and 5")]
     public int Rating {get; set;}
     [Required]
     public string Description {get; set;}

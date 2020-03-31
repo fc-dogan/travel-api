@@ -51,6 +51,7 @@ namespace Travel.Controllers
     [HttpGet("{id}")]
     public ActionResult<Review> Get(int id)
     {
+      
       return _db.Reviews.Include(review => review.Destination).FirstOrDefault(entry => entry.ReviewId == id);
     }
 
