@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Travel.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Travel.Controllers
 {
@@ -58,7 +59,7 @@ namespace Travel.Controllers
       return _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
     }
 
-    
+    [Authorize]
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Review review)
     {
@@ -67,7 +68,7 @@ namespace Travel.Controllers
       _db.SaveChanges();
     }
 
-   
+    [Authorize]  
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
