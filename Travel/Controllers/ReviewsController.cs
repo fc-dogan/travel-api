@@ -1,4 +1,4 @@
-  
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Travel.Controllers
 {
-  [ApiVersion("1.0")]
+  // [ApiVersion("1.0")]
   [Route("api/[controller]")]
   [ApiController]
   public class ReviewsController : ControllerBase
@@ -42,6 +42,16 @@ namespace Travel.Controllers
         query = query.Where(entry => entry.Description == description);
       }
 
+      return query.ToList();
+    }
+
+    [HttpGet] 
+    public ActionResult<IEnumerable<Review>> GetRandom()
+    {
+      var query = _db.Reviews.AsQueryable();
+      Random rand = new Random();
+      int randomId = rand.Next(query.Count<Review>());
+      query = query.Where(r => r.ReviewId == randomId);
       return query.ToList();
     }
 

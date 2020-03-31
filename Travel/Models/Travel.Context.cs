@@ -8,6 +8,8 @@ namespace Travel.Models
           : base(options)
       {
       }
+    public DbSet<Review> Reviews { get; set; }
+    public DbSet<User> Users { get; set; }
 
   protected override void OnModelCreating(ModelBuilder builder)
   {
@@ -31,7 +33,5 @@ namespace Travel.Models
   }
 
   
-    public DbSet<Review> Reviews { get; set; }
-    public DbSet<User> Users { get; set; }
   }
 }

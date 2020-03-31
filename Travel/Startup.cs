@@ -33,6 +33,7 @@ namespace Travel
       o.AssumeDefaultVersionWhenUnspecified = true;
       o.Conventions.Controller<ReviewsController>().HasApiVersion(new ApiVersion(1, 0)); 
       o.Conventions.Controller<ReviewsController>().HasApiVersion(new ApiVersion(2, 0));
+      //Which means, we are not required to put [ApiVersion] attributes above the controller
 
       });
 
