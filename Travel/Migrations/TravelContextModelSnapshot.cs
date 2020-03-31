@@ -16,56 +16,27 @@ namespace Travel.Migrations
                 .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
-            modelBuilder.Entity("Travel.Models.Destination", b =>
-                {
-                    b.Property<int>("DestinationId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("City");
-
-                    b.Property<string>("Country");
-
-                    b.HasKey("DestinationId");
-
-                    b.ToTable("Destinations");
-
-                    b.HasData(
-                        new
-                        {
-                            DestinationId = 1,
-                            City = "Istanbul",
-                            Country = "Turkey"
-                        },
-                        new
-                        {
-                            DestinationId = 2,
-                            City = "Paris",
-                            Country = "France"
-                        },
-                        new
-                        {
-                            DestinationId = 3,
-                            City = "Rome",
-                            Country = "Italy"
-                        });
-                });
-
             modelBuilder.Entity("Travel.Models.Review", b =>
                 {
                     b.Property<int>("ReviewId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<string>("Author");
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasMaxLength(20);
 
-                    b.Property<string>("Description");
+                    b.Property<string>("City")
+                        .IsRequired();
 
-                    b.Property<int>("DestinationId");
+                    b.Property<string>("Country")
+                        .IsRequired();
+
+                    b.Property<string>("Description")
+                        .IsRequired();
 
                     b.Property<int>("Rating");
 
                     b.HasKey("ReviewId");
-
-                    b.HasIndex("DestinationId");
 
                     b.ToTable("Reviews");
 
@@ -74,34 +45,38 @@ namespace Travel.Migrations
                         {
                             ReviewId = 1,
                             Author = "Author1",
+                            City = "Istanbul",
+                            Country = "Turkey",
                             Description = "Istanbul is one of the truly great romantic cities; home to a layering of civilization on civilization, of empire built on empire",
-                            DestinationId = 1,
                             Rating = 5
                         },
                         new
                         {
                             ReviewId = 2,
                             Author = "Author1",
+                            City = "Paris",
+                            Country = "France",
                             Description = "Paris is regarded as one of the most dynamic cities in Europe, and for good reason: the city assaults the senses; demanding to be seen, heard, touched, tasted and smelled.",
-                            DestinationId = 2,
                             Rating = 4
                         },
                         new
                         {
                             ReviewId = 3,
                             Author = "Author1",
+                            City = "Rome",
+                            Country = "Italy",
                             Description = "An in depth vacation to one of the most enduring cities in Europe! Rome is the heart of Italy; once the center of the world`s greatest empire, the Eternal City has some of the finest art and architecture to survive from the last 2,000 years.",
-                            DestinationId = 3,
+                            Rating = 5
+                        },
+                        new
+                        {
+                            ReviewId = 4,
+                            Author = "Author4",
+                            City = "Istanbul",
+                            Country = "Turkey",
+                            Description = "From the holy sites of Sultanahmet and the 19th-century European elegance of Beyoğlu to the high fashion of Nişantaşı, the vibrant café society of Kadıköy and the football-loving streets of Beşiktaş, it’s easy to see why travelers say that Istanbul isn’t just one city, but many cities within one.",
                             Rating = 5
                         });
-                });
-
-            modelBuilder.Entity("Travel.Models.Review", b =>
-                {
-                    b.HasOne("Travel.Models.Destination", "Destination")
-                        .WithMany("Reviews")
-                        .HasForeignKey("DestinationId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

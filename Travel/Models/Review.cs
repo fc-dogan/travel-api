@@ -13,7 +13,6 @@ namespace Travel.Models
     public string City { get; set; }
     [Required]
     [StringLength(20)]
-    
     public string Author {get; set;}
     [Required]
     public int Rating {get; set;}
