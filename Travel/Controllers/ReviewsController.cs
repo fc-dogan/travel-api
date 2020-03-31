@@ -20,12 +20,16 @@ namespace Travel.Controllers
 
     
     [HttpGet]
-    public ActionResult<IEnumerable<Review>> Get(string author, int rating, string description)
+    public ActionResult<IEnumerable<Review>> Get(string country, string city, int rating, string description)
     {
       var query = _db.Reviews.AsQueryable();
-      if (author != null)
+      if (country != null)
       {
-        query = query.Where(entry => entry.Author == author);
+        query = query.Where(entry => entry.Country == country);
+      }
+      if (city != null)
+      {
+        query = query.Where(entry => entry.City == city);
       }
        if (rating != 0 )
       {
@@ -51,8 +55,7 @@ namespace Travel.Controllers
     [HttpGet("{id}")]
     public ActionResult<Review> Get(int id)
     {
-      
-      return _db.Reviews.Include(review => review.Destination).FirstOrDefault(entry => entry.ReviewId == id);
+      return _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
     }
 
     
