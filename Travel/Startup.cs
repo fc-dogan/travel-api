@@ -10,6 +10,8 @@ using Travel.Services;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Versioning;
 
 namespace Travel
 {
@@ -25,6 +27,12 @@ namespace Travel
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
+      services.AddApiVersioning(o => {
+      o.ReportApiVersions = true;
+      o.AssumeDefaultVersionWhenUnspecified = true;
+      o.DefaultApiVersion = new ApiVersion(1, 0);
+      });
+
       services.AddCors();
       services.AddDbContext<TravelContext>(opt =>
           opt.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
