@@ -48,15 +48,14 @@ namespace Travel.Controllers
       return query.ToList();
     }
 
-    // [HttpGet] 
-    // public ActionResult<IEnumerable<Review>> GetRandom()
-    // {
-    //   var query = _db.Reviews.AsQueryable();
-    //   Random rand = new Random();
-    //   int randomId = rand.Next(query.Count<Review>());
-    //   query = query.Where(r => r.ReviewId == randomId);
-    //   return query.ToList();
-    // }
+    [HttpGet("random")]
+    public ActionResult<Review> Random ()
+    {
+      List<Review> reviews = _db.Reviews.ToList();
+      var rand = new Random();
+      int random = rand.Next(0, reviews.Count-1);
+      return reviews[random];
+    }
 
   //  [Authorize]
     [HttpPost]
