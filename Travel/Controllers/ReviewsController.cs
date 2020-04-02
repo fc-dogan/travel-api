@@ -58,7 +58,7 @@ namespace Travel.Controllers
     //   return query.ToList();
     // }
 
-   [Authorize]
+  //  [Authorize]
     [HttpPost]
     public void Post([FromBody] Review review)
     {
@@ -73,7 +73,7 @@ namespace Travel.Controllers
       return _db.Reviews.FirstOrDefault(entry => entry.ReviewId == id);
     }
 
-    [Authorize]
+    // [Authorize]
     [HttpPut("{id}")]
     public void Put(int id, [FromBody] Review review)
     {
@@ -82,7 +82,7 @@ namespace Travel.Controllers
       _db.SaveChanges();
     }
 
-    [Authorize]  
+    // [Authorize]  
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
