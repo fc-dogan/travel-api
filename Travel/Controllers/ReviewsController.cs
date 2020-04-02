@@ -15,15 +15,15 @@ namespace Travel.Controllers
   public class ReviewsController : ControllerBase
   {
     private TravelContext _db;
-    private IUserService _userService;
+    // private IUserService _userService;
 
     public ReviewsController(TravelContext db, IUserService userService)
     {
       _db = db;
-      _userService = userService;
+      // _userService = userService;
     }
 
-    
+    [Authorize]
     [HttpGet]
     public ActionResult<IEnumerable<Review>> Get(string country, string city, int rating, string description)
     {
@@ -57,7 +57,7 @@ namespace Travel.Controllers
       return reviews[random];
     }
 
-  //  [Authorize]
+   [Authorize]
     [HttpPost]
     public void Post([FromBody] Review review)
     {
@@ -81,7 +81,7 @@ namespace Travel.Controllers
       _db.SaveChanges();
     }
 
-    // [Authorize]  
+    [Authorize]  
     [HttpDelete("{id}")]
     public void Delete(int id)
     {
