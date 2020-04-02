@@ -36,6 +36,7 @@ namespace Travel
       //Which means, we are not required to put [ApiVersion] attributes above the controller
 
       });
+      
 
       services.AddCors();
       services.AddDbContext<TravelContext>(opt =>
@@ -69,6 +70,9 @@ namespace Travel
 
             // configure DI for application services
             services.AddScoped<IUserService, UserService>();
+
+            // Register the Swagger services
+            services.AddSwaggerDocument();  
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -89,6 +93,11 @@ namespace Travel
                 .AllowAnyMethod()
                 .AllowAnyHeader());
       app.UseAuthentication();
+
+      // Register the Swagger generator and the Swagger UI middlewares
+      app.UseOpenApi();
+      app.UseSwaggerUi3();
+
       // app.UseHttpsRedirection();
       app.UseMvc();
     }
