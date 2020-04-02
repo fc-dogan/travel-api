@@ -68,11 +68,11 @@ _Add the MySQL environment variable to the System PATH. Instructions for Windows
 
 _Download Manually:_
 
-* Navigate to https://github.com/fc-dogan/Pierre-s-Treats.git
+* Navigate to https://github.com/fc-dogan/travel-api
 * Click the green "Clone or Download" button.
 * Click "Download ZIP".
 * Click downloaded file to unzip.
-* Open folder called "Pierre-s-Treats".
+* Open folder.
 
 _In Terminal:_
 
@@ -82,7 +82,7 @@ _In Terminal:_
   ```
 * Clone the file from GitHub with HTTPS
   ```
-  git clone https://github.com/fc-dogan/Pierre-s-Treats.git 
+  git clone https://github.com/fc-dogan/travel-api 
   ```
 * Open file in your preferred text editor
   ```
@@ -90,7 +90,7 @@ _In Terminal:_
     ```
 * Change directories into the project directory
   ``` 
-  cd Pierre-s-Treats/PierresTreats
+  cd travel-api/Travel
    ```
 
 * Restore all dependencies
@@ -118,10 +118,7 @@ _To run this application:_
   dotnet run
   ```
    Note: To exit, simply press ```Ctrl + C```
-* Open the local hosted server
-  ```
-   http://localhost:5000 
-   ```
+* access the [Swagger UI](http://localhost:5000/swagger/index.html#/Reviews) for testing this API
 
 
 
@@ -137,10 +134,10 @@ _No known bugs at this time._
 * ASP.NET Core MVC
 * MySQL, MySQL Workbench
 * Entity Framework Core
-* LINQ
-* VS Code
-* CSS
-* Bootstrap
+* RestSharp
+* Newtonsoft.Json 
+* Swagger
+* JSON Web Token Authentication
 
 ### License
 
